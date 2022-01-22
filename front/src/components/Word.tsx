@@ -7,7 +7,7 @@ export default function Word({ word, pos, definition }: wordProps) {
   return (
     <div>
       <h1>
-        {word} {pos}
+        {word.toUpperCase()} ({pos})
       </h1>
       <p>{definition}</p>
     </div>
