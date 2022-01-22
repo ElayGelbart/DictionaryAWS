@@ -1,7 +1,7 @@
 import "./App.css";
 import Word from "./Word";
 import { TextField, Button, MenuItem } from "@mui/material";
-import { useCallback, useRef, useState } from "react";
+import React, { useCallback, useRef, useState } from "react";
 
 const partOfSpeechArr = [
   { value: "", label: "Without" },
@@ -25,15 +25,18 @@ export default function App() {
     setPartOf(event.target.value as string);
   };
 
-  const getWordData = useCallback(async () => {
-    const word = wordInput.current!.value;
-    const pos = posInput.current!.value;
+  const getWordData = useCallback(async (word, pos = "") => {
     console.log(word, pos, "wordFromInput");
     const response = await fetch(`/${word}/${pos}`);
     console.log(response, "response");
     if (!response.ok) {
       return setWordElements([
-        <Word word="NOT" pos="FOUND" definition="Try Something Else" />,
+        <Word
+          word="NOT"
+          pos="FOUND"
+          definition="Try Something Else"
+          searchWordFn={getWordData}
+        />,
       ]);
     }
     const wordDataArray = await response.json();
@@ -44,6 +47,7 @@ export default function App() {
           word={word.word}
           pos={word.pos}
           definition={word.definitions.join("\r\n")}
+          searchWordFn={getWordData}
         />
       );
     }
@@ -79,13 +83,13 @@ export default function App() {
           variant="contained"
           color="warning"
           onClick={() => {
-            getWordData();
+            getWordData(wordInput.current!.value, posInput.current!.value);
           }}
         >
           Search
         </Button>
       </div>
-      {wordElements}
+      <div id="wordDefinitions">{wordElements}</div>
     </div>
   );
 }

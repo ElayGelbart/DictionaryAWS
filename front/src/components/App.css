@@ -19,3 +19,9 @@ h1::first-letter {
   margin-top: 1rem;
   margin-bottom: 0.5rem;
 }
+.eachWord {
+  cursor: pointer;
+}
+.eachWord:hover {
+  color: var(--orangeDefault);
+}
