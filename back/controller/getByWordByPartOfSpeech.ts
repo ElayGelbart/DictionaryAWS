@@ -18,11 +18,18 @@ export default async function getByWordByPartOfSpeech(
     },
   };
   console.log("in pos");
-  const response = await ddb
-    .query(params, (err, data) => {
-      if (err) return err;
-      return data;
-    })
-    .promise();
-  res.send(response);
+  try {
+    const response = await ddb
+      .query(params, (err, data) => {
+        if (err) return err;
+        return data;
+      })
+      .promise();
+    if (!response.Count) {
+      return next({ status: "400", msg: "Item did not found" });
+    }
+    res.send(response.Items);
+  } catch (err) {
+    return next();
+  }
 }

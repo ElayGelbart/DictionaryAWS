@@ -1,21 +1,33 @@
 import "./App.css";
 import Word from "./Word";
-import { TextField, Button, InputLabel, Select, MenuItem } from "@mui/material";
+import { TextField, Button, MenuItem } from "@mui/material";
 import { useCallback, useRef, useState } from "react";
-interface wordProps {
-  word: string;
-  definition: string;
-  pos: string;
-}
+const partOfSpeechArr = [
+  { value: "", label: "Without" },
+  { value: "v.", label: "Verb" },
+  { value: "n.", label: "Noun" },
+  { value: "adv.", label: "Adverb" },
+  { value: "pron.", label: "Pronoun" },
+  { value: "prep.", label: "Preposition" },
+  { value: "a.", label: "Adjective" },
+  { value: "interj.", label: "Interjection" },
+];
 export default function App() {
+  const [partOf, setPartOf] = useState("");
+
   const wordInput = useRef<HTMLInputElement>();
+  const posInput = useRef<HTMLInputElement>();
   const [wordElements, setWordElements] = useState([
     <Word word="hello" pos="noun" definition="testing" />,
   ]);
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setPartOf(event.target.value as string);
+  };
   const getWordData = useCallback(async () => {
     const word = wordInput.current!.value;
-    console.log(word, "wordfrominput");
-    const response = await fetch(`/${word}`);
+    const pos = posInput.current!.value;
+    console.log(word, pos, "wordfrominput");
+    const response = await fetch(`/${word}/${pos}`);
     console.log(response, "response");
     if (!response.ok) {
       return console.log("response not ok");
@@ -42,16 +54,21 @@ export default function App() {
         inputRef={wordInput}
         focused
       />
-      <InputLabel id="demo-simple-select-label">Age</InputLabel>
-      <Select
-        labelId="demo-simple-select-label"
-        id="demo-simple-select"
-        label="Age"
+      <TextField
+        select
+        inputRef={posInput}
+        label="Select"
+        value={partOf}
+        color="warning"
+        helperText="Please select part of speech"
+        onChange={handleChange}
       >
-        <MenuItem value={10}>Ten</MenuItem>
-        <MenuItem value={20}>Twenty</MenuItem>
-        <MenuItem value={30}>Thirty</MenuItem>
-      </Select>
+        {partOfSpeechArr.map((option: { value: string; label: string }) => (
+          <MenuItem key={option.value} value={option.value}>
+            {option.label}
+          </MenuItem>
+        ))}
+      </TextField>
       <Button
         variant="contained"
         color="warning"

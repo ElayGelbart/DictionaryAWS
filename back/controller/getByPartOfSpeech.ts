@@ -10,18 +10,23 @@ export default async function getByPartOfSpeech(
   console.log(part, "part");
   const params = {
     TableName: "DictionaryEnglish",
-    IndexName: "pos",
+    IndexName: "pos-word-index",
     KeyConditionExpression: "pos = :pos",
     ExpressionAttributeValues: {
       ":pos": part,
     },
   };
   console.log("in pos");
-  const response = await ddb
-    .query(params, (err, data) => {
-      if (err) return err;
-      return data;
-    })
-    .promise();
-  res.send(response);
+  try {
+    const response = await ddb
+      .query(params, (err, data) => {
+        if (err) return err;
+        return data;
+      })
+      .promise();
+
+    res.send(response);
+  } catch (err) {
+    console.log("err", err);
+  }
 }

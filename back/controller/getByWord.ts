@@ -16,10 +16,14 @@ export default async function getByWord(
       ":word": word.toUpperCase(),
     },
   };
-  const result = await ddb.query(params).promise();
-  console.log(result);
-  if (!result.Count) {
-    return next({ status: "400", msg: "Item did not found" });
+  try {
+    const result = await ddb.query(params).promise();
+    console.log(result);
+    if (!result.Count) {
+      return next({ status: "400", msg: "Item did not found" });
+    }
+    res.send(result.Items);
+  } catch (err) {
+    return next();
   }
-  res.send(result.Items);
 }
