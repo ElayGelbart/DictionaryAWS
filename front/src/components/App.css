@@ -25,3 +25,17 @@ h1::first-letter {
 .eachWord:hover {
   color: var(--orangeDefault);
 }
+.wordTitle {
+  color: var(--orangeDefault);
+}
+.wordDiv {
+  width: 85vw;
+  margin-left: auto;
+  margin-right: auto;
+}
+.wordDiv > p {
+  text-align: start;
+}
+.wordDiv > p::first-letter {
+  color: var(--orangeDefault);
+}

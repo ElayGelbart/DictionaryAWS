@@ -11,9 +11,9 @@ export default function Word({
   searchWordFn,
 }: wordProps) {
   return (
-    <div>
+    <div className="wordDiv">
       <h1>
-        {word.toUpperCase()} ({pos})
+        <span className="wordTitle">{word.toUpperCase()}</span> ({pos})
       </h1>
       <p>
         {definition.split(" ").map((word) => {

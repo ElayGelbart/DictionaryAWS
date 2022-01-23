@@ -12,8 +12,9 @@ const partOfSpeechArr = [
   { value: "prep.", label: "Preposition" },
   { value: "a.", label: "Adjective" },
   { value: "interj.", label: "Interjection" },
+  { value: "conj.", label: "Conjunction" },
 ];
-const defaultWord = <Word word="hello" pos="noun" definition="testing" />;
+const defaultWord = <Word word="welcome" pos="v." definition="" />;
 
 export default function App() {
   const [partOf, setPartOf] = useState("");
@@ -46,7 +47,7 @@ export default function App() {
         <Word
           word={word.word}
           pos={word.pos}
-          definition={word.definitions.join("\r\n")}
+          definition={word.definitions.join(" ")}
           searchWordFn={getWordData}
         />
       );
