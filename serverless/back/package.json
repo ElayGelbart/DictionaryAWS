@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --verbose --runInBand",
+    "test": "jest --verbose --runInBand --maxWorkers=1",
     "dev": "nodemon index.ts"
   },
   "keywords": [],
