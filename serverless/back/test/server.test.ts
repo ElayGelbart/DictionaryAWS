@@ -1,6 +1,6 @@
-import app from "../app";
 import * as request from "supertest";
 import { expect, describe, test } from "@jest/globals";
+import app from "../app";
 console.log("AppAPAPAPPA", app);
 console.log("requestApp", request(app));
 describe("Server Testing", () => {
