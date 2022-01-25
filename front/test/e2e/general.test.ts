@@ -1,12 +1,13 @@
 import puppeteer from "puppeteer";
 let browser: puppeteer.Browser;
 let page: puppeteer.Page;
-beforeAll(async () => {
-  browser = await puppeteer.launch();
-  page = await browser.newPage();
-  await page.goto("http://localhost:3000/");
-});
+
 describe("E2E Tests", () => {
+  beforeAll(async () => {
+    browser = await puppeteer.launch();
+    page = await browser.newPage();
+    await page.goto("http://localhost:3000/");
+  }, 40000);
   it("should have page title", async () => {
     expect(await page.title()).toBe("Web Dictionary");
   });
@@ -76,7 +77,8 @@ describe("E2E Tests", () => {
     });
     expect(wordDef).toContain("To become pure");
   });
-});
-afterAll(async () => {
-  await browser.close();
+
+  afterAll(async () => {
+    await browser.close();
+  });
 });
