@@ -18,8 +18,6 @@ jobs:
           cd ./back
           npm i
       - name: install dependencies serverless
-        run: |
-          cd ..
-          npm i
+        run: npm i
       - name: run test
         run: npm test
