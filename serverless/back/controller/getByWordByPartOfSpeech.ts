@@ -1,28 +1,31 @@
 import { Request, Response, NextFunction } from "express";
 import AWS from "aws-sdk";
 const ddb = new AWS.DynamoDB.DocumentClient({ region: "eu-west-1" });
-export default async function getByWord(
+export default async function getByWordByPartOfSpeech(
   req: Request,
   res: Response,
   next: NextFunction
 ) {
-  const { word } = req.params;
-  console.log("i am in get by word");
-  console.log(word);
+  const { word, partOfSpeech } = req.params;
   const params = {
-    TableName: "DictionaryEnglish", // change this !!!
-    KeyConditionExpression: "word = :word",
+    TableName: "DictionaryEnglish",
+    KeyConditionExpression: "pos = :pos AND word = :word",
     ExpressionAttributeValues: {
+      ":pos": partOfSpeech,
       ":word": word.toUpperCase(),
     },
   };
   try {
-    const result = await ddb.query(params).promise();
-    console.log(result);
-    if (!result.Count) {
+    const response = await ddb
+      .query(params, (err, data) => {
+        if (err) return err;
+        return data;
+      })
+      .promise();
+    if (!response.Count) {
       return next({ status: "400", msg: "Item did not found" });
     }
-    res.send(result.Items);
+    res.send(response.Items);
   } catch (err) {
     return next();
   }

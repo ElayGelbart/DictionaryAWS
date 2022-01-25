@@ -1,9 +1,12 @@
 import express from "express";
+import cors from "cors";
 import getByWordController from "./controller/getByWord";
 import getByPartOfSpeech from "./controller/getByPartOfSpeech";
 import getByWordByPartOfSpeech from "./controller/getByWordByPartOfSpeech";
 import errorHandler from "./middleware/error/errorhandler";
 export const app = express();
+
+app.use(cors());
 
 app.get("/:word", getByWordController);
 

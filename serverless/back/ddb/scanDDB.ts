@@ -9,7 +9,7 @@ const scanItems = async () => {
     if (!result.Items) {
       throw result;
     }
-    itemsArray = itemsArray.concat(result.Items);
+    itemsArray = itemsArray.concat(result.Items as []);
     const scanRetry = async (lastKey: Word.Item) => {
       const resultRetry = await ddb
         .scan({ TableName: "DictionaryEnglish", ExclusiveStartKey: lastKey })
@@ -17,12 +17,12 @@ const scanItems = async () => {
       if (!resultRetry.Items) {
         throw result;
       }
-      itemsArray = itemsArray.concat(resultRetry.Items);
+      itemsArray = itemsArray.concat(resultRetry.Items as []);
       if (resultRetry.LastEvaluatedKey) {
-        await scanRetry(resultRetry.LastEvaluatedKey);
+        await scanRetry(resultRetry.LastEvaluatedKey as Word.Item);
       }
     };
-    await scanRetry(result.LastEvaluatedKey);
+    await scanRetry(result.LastEvaluatedKey as Word.Item);
     fs.writeFileSync("myDictionary.json", JSON.stringify(itemsArray));
   } catch (err) {
     console.log("an error ocurred", err);
