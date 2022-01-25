@@ -1,4 +1,4 @@
-import { app } from "../app";
+import app from "../app";
 import * as request from "supertest";
 import { expect, describe, test } from "@jest/globals";
 
