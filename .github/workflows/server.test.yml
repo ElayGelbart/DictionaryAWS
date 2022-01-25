@@ -1,8 +1,8 @@
 name: Server Side Testing
 
 on:
-  pull_request:
-    branches: [main]
+  push:
+    branches: [cicd]
 
 jobs:
   test_server:
