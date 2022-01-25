@@ -28,7 +28,9 @@ export default function App() {
 
   const getWordData = useCallback(async (word, pos = "") => {
     console.log(word, pos, "wordFromInput");
-    const response = await fetch(`/${word}/${pos}`);
+    const response = await fetch(
+      `https://api.dictionary.elaygelbart.com/${word}/${pos}`
+    );
     console.log(response, "response");
     if (!response.ok) {
       return setWordElements([

@@ -24,6 +24,7 @@ export default async function getByWord(
     }
     res.send(result.Items);
   } catch (err) {
+    console.log("in GBW error", err);
     return next();
   }
 }

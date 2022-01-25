@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "aws-lambda-http-server": "^0.2.7",
     "aws-sdk": "^2.1059.0",
     "cors": "^2.8.5",
     "dotenv": "^14.2.0",
