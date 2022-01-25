@@ -1,6 +1,6 @@
 import { app } from "../app";
 import * as request from "supertest";
-import { expect, describe, it } from "@jest/globals";
+import { expect, describe, test } from "@jest/globals";
 
 describe("Server Testing", () => {
   describe("Test Good Response", () => {
