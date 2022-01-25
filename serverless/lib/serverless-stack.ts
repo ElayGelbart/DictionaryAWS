@@ -9,7 +9,7 @@ export class ServerlessStack extends Stack {
     super(scope, id, props);
     const apiHandler = new NodejsFunction(this, "api", {
       functionName: "getAPI",
-      entry: `./back/app.ts`,
+      entry: `./back/index.ts`,
       handler: "proxy",
       role: Role.fromRoleArn(
         this,
