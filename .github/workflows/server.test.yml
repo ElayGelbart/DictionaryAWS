@@ -1,0 +1,17 @@
+name: Server Side Testing
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  test_server:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: serverless/back
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+      - run: npm i
+      - run: npm test
