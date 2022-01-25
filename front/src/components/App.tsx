@@ -14,7 +14,13 @@ const partOfSpeechArr = [
   { value: "interj.", label: "Interjection" },
   { value: "conj.", label: "Conjunction" },
 ];
-const defaultWord = <Word word="welcome" pos="v." definition="" />;
+const defaultWord = (
+  <Word
+    word="Dictionary"
+    pos="n."
+    definition="A book containing the words of a language, arranged alphabetically, with explanations of their meanings"
+  />
+);
 
 export default function App() {
   const [partOf, setPartOf] = useState("");
@@ -62,6 +68,7 @@ export default function App() {
       <h1>Web Dictionary</h1>
       <div id="searchDiv">
         <TextField
+          id="searchWordInput"
           label="Search any word"
           color="warning"
           inputRef={wordInput}
@@ -75,6 +82,7 @@ export default function App() {
           color="warning"
           helperText="Please select part of speech"
           onChange={handleChange}
+          id="selectPosInput"
         >
           {partOfSpeechArr.map((option: { value: string; label: string }) => (
             <MenuItem key={option.value} value={option.value}>
