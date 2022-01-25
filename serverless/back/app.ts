@@ -1,5 +1,5 @@
-import express from "express";
-import cors from "cors";
+import * as express from "express";
+import * as cors from "cors";
 import getByWordController from "./controller/getByWord";
 import getByPartOfSpeech from "./controller/getByPartOfSpeech";
 import getByWordByPartOfSpeech from "./controller/getByWordByPartOfSpeech";

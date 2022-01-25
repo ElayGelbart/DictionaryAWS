@@ -1,4 +1,4 @@
-import fs from "fs";
+import * as fs from "fs";
 import dict from "jsonDictionary!./dictionary.json";
 import myDic from "jsonDictionary!./myDictionary.json";
 const compare = dict.filter(

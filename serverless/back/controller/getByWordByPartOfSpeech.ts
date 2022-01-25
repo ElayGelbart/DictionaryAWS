@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import AWS from "aws-sdk";
+import * as AWS from "aws-sdk";
 const ddb = new AWS.DynamoDB.DocumentClient({ region: "eu-west-1" });
 export default async function getByWordByPartOfSpeech(
   req: Request,

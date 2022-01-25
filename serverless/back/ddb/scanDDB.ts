@@ -1,5 +1,5 @@
-import fs from "fs";
-import AWS from "aws-sdk";
+import * as fs from "fs";
+import * as AWS from "aws-sdk";
 const ddb = new AWS.DynamoDB.DocumentClient({ region: "eu-west-1" });
 
 const scanItems = async () => {

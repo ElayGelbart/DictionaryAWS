@@ -1,5 +1,5 @@
 import { app } from "../app";
-import request from "supertest";
+import * as request from "supertest";
 
 describe("Server Testing", () => {
   describe("Test Good Response", () => {

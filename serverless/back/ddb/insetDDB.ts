@@ -1,4 +1,4 @@
-import AWS from "aws-sdk";
+import * as AWS from "aws-sdk";
 const ddb = new AWS.DynamoDB.DocumentClient({ region: "eu-west-1" });
 import jsonFile from "jsonDictionary!./dictionary.json";
 const addItems2DDB = async () => {
