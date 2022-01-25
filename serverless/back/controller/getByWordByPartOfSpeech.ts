@@ -7,8 +7,6 @@ export default async function getByWordByPartOfSpeech(
   next: NextFunction
 ) {
   const { word, partOfSpeech } = req.params;
-  console.log(word, "word");
-  console.log(partOfSpeech, "partOfSpeech");
   const params = {
     TableName: "DictionaryEnglish",
     KeyConditionExpression: "pos = :pos AND word = :word",
@@ -17,7 +15,6 @@ export default async function getByWordByPartOfSpeech(
       ":word": word.toUpperCase(),
     },
   };
-  console.log("in pos");
   try {
     const response = await ddb
       .query(params, (err, data) => {

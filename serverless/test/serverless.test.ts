@@ -1,17 +1,39 @@
-// import * as cdk from 'aws-cdk-lib';
-// import { Template } from 'aws-cdk-lib/assertions';
-// import * as Serverless from '../lib/serverless-stack';
+import * as cdk from "aws-cdk-lib";
+import { Template } from "aws-cdk-lib/assertions";
+import * as Serverless from "../lib/serverless-stack";
 
-// example test. To run these tests, uncomment this file along with the
-// example resource in lib/serverless-stack.ts
-test('SQS Queue Created', () => {
-//   const app = new cdk.App();
-//     // WHEN
-//   const stack = new Serverless.ServerlessStack(app, 'MyTestStack');
-//     // THEN
-//   const template = Template.fromStack(stack);
+describe("CDK Template Test", () => {
+  const app = new cdk.App();
+  const stack = new Serverless.ServerlessStack(app, "MyTestStack");
+  const template = Template.fromStack(stack);
 
-//   template.hasResourceProperties('AWS::SQS::Queue', {
-//     VisibilityTimeout: 300
-//   });
+  test("Lambda Created", () => {
+    template.hasResourceProperties("AWS::Lambda::Function", {
+      FunctionName: "getAPI",
+      Runtime: "nodejs14.x",
+    });
+  });
+
+  test("API-Gateway Created", () => {
+    template.hasResourceProperties("AWS::ApiGateway::RestApi", {
+      Name: "ApiGatewayLambda",
+    });
+  });
+
+  test("API-Gateway has ANY Method", () => {
+    template.hasResourceProperties("AWS::ApiGateway::Method", {
+      HttpMethod: "ANY",
+    });
+  });
+
+  test("API-Gateway Stage should be dev", () => {
+    template.hasResourceProperties("AWS::ApiGateway::Stage", {
+      StageName: "dev",
+    });
+  });
+  test("API-Gateway Domain Name is api.dictionary.elaygelbart.com", () => {
+    template.hasResourceProperties("AWS::ApiGateway::DomainName", {
+      DomainName: "api.dictionary.elaygelbart.com",
+    });
+  });
 });

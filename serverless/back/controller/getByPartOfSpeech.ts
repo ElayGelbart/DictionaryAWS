@@ -7,7 +7,6 @@ export default async function getByPartOfSpeech(
   next: NextFunction
 ) {
   const { part } = req.params;
-  console.log(part, "part");
   const params = {
     TableName: "DictionaryEnglish",
     IndexName: "pos-word-index",
@@ -16,7 +15,6 @@ export default async function getByPartOfSpeech(
       ":pos": part,
     },
   };
-  console.log("in pos");
   try {
     const response = await ddb
       .query(params, (err, data) => {
@@ -27,6 +25,6 @@ export default async function getByPartOfSpeech(
 
     res.send(response);
   } catch (err) {
-    console.log("err", err);
+    return next();
   }
 }
