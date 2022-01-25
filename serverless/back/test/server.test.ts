@@ -5,6 +5,7 @@ describe("Server Testing", () => {
   describe("Test Good Response", () => {
     it("should get word description", async () => {
       const response = await request(app).get("/test");
+      console.log("rEsPoNsE", response);
       expect(response.body[0].definitions).toBeDefined();
       expect(response.body[0].pos).toBeDefined();
       expect(response.body[0].word).toBe("TEST");
