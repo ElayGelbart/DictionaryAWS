@@ -2,7 +2,7 @@ const request = require("supertest");
 // import { expect, describe, test } from "@jest/globals";
 const { app } = require("../app");
 console.log("AppAPAPAPPA", app);
-console.log("requestApp", request(app));
+console.log("requestApp", request);
 describe("Server Testing", () => {
   describe("Test Good Response", () => {
     test("should get word description", async () => {
