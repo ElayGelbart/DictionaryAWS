@@ -1,0 +1,23 @@
+name: CDK Testing
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  test_cdk:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: serverless
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+      - name: install dependencies back
+        run: |
+          cd ./back
+          npm i
+      - name: install dependencies serverless
+        run: npm i
+      - name: run test
+        run: npm test

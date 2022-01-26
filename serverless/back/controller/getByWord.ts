@@ -8,7 +8,7 @@ export default async function getByWord(
 ) {
   const { word } = req.params;
   const params = {
-    TableName: "DictionaryEnglish", // change this !!!
+    TableName: "DictionaryEnglish",
     KeyConditionExpression: "word = :word",
     ExpressionAttributeValues: {
       ":word": word.toUpperCase(),

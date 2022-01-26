@@ -5,7 +5,7 @@ beforeAll(async () => {
   browser = await puppeteer.launch();
   page = await browser.newPage();
   await page.goto("http://localhost:3000/");
-});
+}, 60000);
 describe("E2E Tests", () => {
   it("should have page title", async () => {
     expect(await page.title()).toBe("Web Dictionary");
