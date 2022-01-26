@@ -1,11 +1,14 @@
 const request = require("supertest");
 // import { expect, describe, test } from "@jest/globals";
 const { app } = require("../app");
-console.log("AppAPAPAPPA", app);
+console.log("App", app);
 console.log("requestApp", request);
 describe("Server Testing", () => {
   describe("Test Good Response", () => {
     test("should get word description", async () => {
+      const responseOmer = await request(app).get("/elay");
+      console.log("response Omer", responseOmer)
+      expect(responseOmer.body).toBeDefined();
       const response = await request(app).get("/test");
       expect(response.body[0].definitions).toBeDefined();
       expect(response.body[0].pos).toBeDefined();

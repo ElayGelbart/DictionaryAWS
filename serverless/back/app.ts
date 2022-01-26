@@ -8,6 +8,10 @@ export const app = express();
 
 app.use(cors());
 
+app.get("/elay", (req, res, next) => {
+  res.send("hello");
+});
+
 app.get("/:word", getByWordController);
 
 app.get("/partOfSpeech/:part", getByPartOfSpeech);
