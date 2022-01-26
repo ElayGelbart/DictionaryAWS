@@ -6,6 +6,7 @@ export default async function getByWord(
   res: Response,
   next: NextFunction
 ) {
+  console.log("in test in test");
   const { word } = req.params;
   const params = {
     TableName: "DictionaryEnglish", // change this !!!
