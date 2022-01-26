@@ -6,10 +6,9 @@ export default async function getByWord(
   res: Response,
   next: NextFunction
 ) {
-  console.log("in test in test");
   const { word } = req.params;
   const params = {
-    TableName: "DictionaryEnglish", // change this !!!
+    TableName: "DictionaryEnglish",
     KeyConditionExpression: "word = :word",
     ExpressionAttributeValues: {
       ":word": word.toUpperCase(),
@@ -17,11 +16,13 @@ export default async function getByWord(
   };
   try {
     const result = await ddb.query(params).promise();
+    console.log("result", result);
     if (!result.Count) {
       return next({ status: "400", msg: "Item did not found" });
     }
     res.send(result.Items);
   } catch (err) {
+    console.log("error get by word", err);
     return next();
   }
 }
