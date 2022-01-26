@@ -4,7 +4,7 @@ import getByWordController from "./controller/getByWord";
 import getByPartOfSpeech from "./controller/getByPartOfSpeech";
 import getByWordByPartOfSpeech from "./controller/getByWordByPartOfSpeech";
 import errorHandler from "./middleware/error/errorhandler";
-const app = express();
+export const app = express();
 
 app.use(cors());
 
@@ -15,5 +15,3 @@ app.get("/partOfSpeech/:part", getByPartOfSpeech);
 app.get("/:word/:partOfSpeech", getByWordByPartOfSpeech);
 
 app.use(errorHandler);
-
-export default app;
