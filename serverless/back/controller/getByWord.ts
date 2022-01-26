@@ -16,13 +16,11 @@ export default async function getByWord(
   };
   try {
     const result = await ddb.query(params).promise();
-    console.log("result", result);
     if (!result.Count) {
       return next({ status: "400", msg: "Item did not found" });
     }
     res.send(result.Items);
   } catch (err) {
-    console.log("error get by word", err);
     return next();
   }
 }

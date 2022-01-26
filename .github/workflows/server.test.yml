@@ -2,7 +2,7 @@ name: Server Side Testing
 
 on:
   push:
-    branches: [CICD2]
+    branches: [main]
 
 env:
   AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
