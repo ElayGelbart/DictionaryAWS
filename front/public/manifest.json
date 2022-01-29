@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Dictionary AWS",
+  "name": "Dictionary created with AWS",
   "icons": [
     {
       "src": "favicon.ico",

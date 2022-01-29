@@ -5,6 +5,9 @@ body {
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
   text-align: center;
 }
+#logo {
+  height: 30vh;
+}
 h1::first-letter {
   color: var(--orangeDefault);
 }
