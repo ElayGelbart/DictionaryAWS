@@ -6,6 +6,7 @@
   },
   "scripts": {
     "backDev": "nodemon ./back/index.ts",
+    "backTest": "jest --verbose ./back/test",
     "build": "tsc",
     "watch": "tsc -w",
     "test": "jest",
