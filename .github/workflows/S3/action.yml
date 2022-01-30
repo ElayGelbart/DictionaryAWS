@@ -1,0 +1,23 @@
+name: "Heroku Auto Deployment"
+author: "Elay Gelbart"
+description: "Heroku Deployment"
+inputs:
+  BuildDir:
+    description: "Dir of S3 folder to upload"
+    required: true
+  FrontDir:
+    description: "Dir of front folder to build"
+    required: true
+  S3BucketName:
+    description: "S3 Bucket name"
+    required: true
+  useDelete:
+    description: "use delete objects or not"
+    required: false
+    default: ""
+runs:
+  using: "node12"
+  main: "dist/index.js"
+branding:
+  icon: "server"
+  color: "purple"
