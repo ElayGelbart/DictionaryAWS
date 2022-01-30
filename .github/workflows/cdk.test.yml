@@ -1,16 +1,11 @@
-name: Deploy Front 2 S3
+name: CDK Testing
 
 on:
-  push:
+  pull_request:
     branches: [main]
 
-env:
-  AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
-  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-
 jobs:
-  Deploy_Front:
+  test_cdk:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -18,10 +13,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
-      - name: Upload Front 2 S3 Bucket
-        uses: ./S3
-        with:
-          FrontDir: front
-          BuildDir: build
-          S3BucketName: dictionary.elaygelbart.com
-          useDelete: true
+      - name: install dependencies back
+        run: |
+          cd ./back
+          npm i
+      - name: install dependencies serverless
+        run: npm i
+      - name: run test
+        run: npm test

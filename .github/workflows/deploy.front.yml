@@ -1,4 +1,4 @@
-name: Deploy Front
+name: Deploy Front 2 S3
 
 on:
   push:
@@ -12,7 +12,16 @@ env:
 jobs:
   Deploy_Front:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: serverless
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
-      - uses:
+      - name: Upload Front 2 S3 Bucket
+        uses: ./S3
+        with:
+          FrontDir: front
+          BuildDir: build
+          S3BucketName: dictionary.elaygelbart.com
+          useDelete: true
