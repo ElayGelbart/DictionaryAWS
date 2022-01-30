@@ -5,7 +5,8 @@ import { execSync } from "child_process";
   try {
     const frontDir = core.getInput("FrontDir");
     console.log("frontDirFrontDir  ", frontDir);
-    execSync(`cd ./${frontDir} & npm install & npm build`);
+    execSync(`npm --prefix ./${frontDir} install`);
+    execSync(`npm --prefix ./${frontDir} run build`);
     core.info("Site Builded");
     const buildDir = core.getInput("BuildDir");
     const S3BucketName = core.getInput("S3BucketName");
