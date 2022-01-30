@@ -4,6 +4,7 @@ import { execSync } from "child_process";
 (async function () {
   try {
     const frontDir = core.getInput("FrontDir");
+    console.log("frontDirFrontDir  ", frontDir);
     execSync(`cd ./${frontDir} & npm install & npm build`);
     core.info("Site Builded");
     const buildDir = core.getInput("BuildDir");
