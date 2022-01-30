@@ -5,7 +5,9 @@ import { execSync } from "child_process";
   try {
     const frontDir = core.getInput("FrontDir");
     execSync(`cd ./${frontDir}`);
+    core.info(`change Dir to ${frontDir}`);
     execSync("npm install");
+    core.info(`install dependencies ${frontDir}`);
     core.info("dependencies installed");
     execSync("npm build");
     core.info("Site Builded");
