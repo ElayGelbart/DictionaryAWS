@@ -15,13 +15,6 @@ import { spawnSync, execSync } from "child_process";
     execSync(`sudo ./aws/install --update`);
     const buildDir = core.getInput("BuildDir");
     const S3BucketName = core.getInput("S3BucketName");
-    const useDelete = core.getInput("useDelete");
-    const deleteString = useDelete ? "--delete" : "";
-
-    console.log(
-      "awsSYNC  ",
-      `aws s3 cp ./${buildDir} s3://${S3BucketName} ${deleteString}`
-    );
     const result = execSync(`aws s3 cp . s3://${S3BucketName} --recursive`, {
       cwd: `./${buildDir}`,
     });

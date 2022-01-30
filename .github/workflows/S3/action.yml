@@ -11,10 +11,7 @@ inputs:
   S3BucketName:
     description: "S3 Bucket name"
     required: true
-  useDelete:
-    description: "use delete objects or not"
-    required: false
-    default: ""
+
 runs:
   using: "node12"
   main: "dist/index.js"
