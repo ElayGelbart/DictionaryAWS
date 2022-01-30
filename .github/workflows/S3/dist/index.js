@@ -1601,7 +1601,7 @@ const child_process_1 = __nccwpck_require__(81);
             core.info("Site Builded");
             (0, child_process_1.execSync)(`curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"`);
             (0, child_process_1.execSync)(`unzip awscliv2.zip`);
-            (0, child_process_1.execSync)(`sudo ./aws/install`);
+            (0, child_process_1.execSync)(`sudo ./aws/install --update`);
             const buildDir = core.getInput("BuildDir");
             const S3BucketName = core.getInput("S3BucketName");
             const useDelete = core.getInput("useDelete");
