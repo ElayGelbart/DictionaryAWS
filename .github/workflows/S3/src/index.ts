@@ -22,7 +22,7 @@ import { spawnSync, execSync } from "child_process";
       "awsSYNC  ",
       `aws s3 cp ./${buildDir} s3://${S3BucketName} ${deleteString}`
     );
-    const result = spawnSync(`aws s3 cp . s3://${S3BucketName} --recursive`, {
+    const result = execSync(`aws s3 cp . s3://${S3BucketName} --recursive`, {
       cwd: `./${buildDir}`,
     });
     console.log(result);
