@@ -1604,7 +1604,7 @@ const child_process_1 = __nccwpck_require__(81);
             const useDelete = core.getInput("useDelete");
             const deleteString = useDelete ? "--delete" : "";
             console.log("awsSYNC  ", `aws s3 sync ./${buildDir} s3://${S3BucketName} ${deleteString}`);
-            const result = (0, child_process_1.spawnSync)(`aws s3 sync ./${buildDir} s3://${S3BucketName} ${deleteString}`);
+            const result = (0, child_process_1.spawnSync)(`aws s3 sync . s3://${S3BucketName} ${deleteString}`, { cwd: `./${buildDir}` });
             console.log(result);
             core.info("Build Folder Uploaded to S3 Bucket");
         }
