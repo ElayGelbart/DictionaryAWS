@@ -1595,17 +1595,15 @@ const child_process_1 = __nccwpck_require__(81);
     return __awaiter(this, void 0, void 0, function* () {
         try {
             const frontDir = core.getInput("FrontDir");
-            (0, child_process_1.execSync)(`cd ./${frontDir}`);
-            (0, child_process_1.execSync)("npm install");
-            core.info("dependencies installed");
-            (0, child_process_1.execSync)("npm build");
+            console.log("frontDirFrontDir  ", frontDir);
+            (0, child_process_1.execSync)(`npm --prefix ./${frontDir} install`);
+            (0, child_process_1.execSync)(`npm --prefix ./${frontDir} run build`);
             core.info("Site Builded");
             const buildDir = core.getInput("BuildDir");
-            (0, child_process_1.execSync)(`cd ./${buildDir}`);
             const S3BucketName = core.getInput("S3BucketName");
             const useDelete = core.getInput("useDelete");
             const deleteString = useDelete ? "--delete" : "";
-            (0, child_process_1.execSync)(`aws s3 sync . s3://${S3BucketName} ${deleteString}`);
+            (0, child_process_1.execSync)(`cd ./${buildDir} & aws s3 sync . s3://${S3BucketName} ${deleteString}`);
             core.info("Build Folder Uploaded to S3 Bucket");
         }
         catch (error) {
