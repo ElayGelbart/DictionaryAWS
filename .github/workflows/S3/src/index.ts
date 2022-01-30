@@ -6,6 +6,7 @@ import { spawnSync, execSync } from "child_process";
     const frontDir = core.getInput("FrontDir");
     console.log("frontDirFrontDir  ", frontDir);
     execSync(`npm --prefix ./${frontDir} install`);
+    core.info("Dependencies Installed");
     execSync(`npm --prefix ./${frontDir} run build`);
     core.info("Site Builded");
     const buildDir = core.getInput("BuildDir");
