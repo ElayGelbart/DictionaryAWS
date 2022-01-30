@@ -19,6 +19,6 @@ jobs:
         uses: ./.github/workflows/S3
         with:
           FrontDir: front
-          BuildDir: build
+          BuildDir: front/build
           S3BucketName: dictionary.elaygelbart.com
           useDelete: true
