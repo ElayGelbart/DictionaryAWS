@@ -11,12 +11,12 @@ env:
 
 jobs:
   test_server:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: serverless/back
+        working-directory: serverless
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
       - run: npm install
-      - run: npm run test
+      - run: npm run backTest
