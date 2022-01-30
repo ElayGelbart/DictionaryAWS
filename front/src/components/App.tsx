@@ -2,7 +2,7 @@ import "./App.css";
 import Word from "./Word";
 import { TextField, Button, MenuItem } from "@mui/material";
 import React, { useCallback, useRef, useState } from "react";
-
+import logo from "../assets/dictionary-logo.png";
 const partOfSpeechArr = [
   { value: "", label: "Without" },
   { value: "v.", label: "Verb" },
@@ -37,7 +37,6 @@ export default function App() {
     const response = await fetch(
       `https://api.dictionary.elaygelbart.com/${word}/${pos}`
     );
-    console.log(response, "response");
     if (!response.ok) {
       return setWordElements([
         <Word
@@ -65,7 +64,7 @@ export default function App() {
 
   return (
     <div>
-      <h1>Web Dictionary</h1>
+      <img id="logo" src={logo} alt="logo" />
       <div id="searchDiv">
         <TextField
           id="searchWordInput"
