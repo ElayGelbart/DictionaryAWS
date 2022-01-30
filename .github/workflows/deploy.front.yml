@@ -21,4 +21,3 @@ jobs:
           FrontDir: front
           BuildDir: front/build
           S3BucketName: dictionary.elaygelbart.com
-          useDelete: true
