@@ -8,6 +8,11 @@ import { spawnSync, execSync } from "child_process";
     core.info("Dependencies Installed");
     execSync(`npm --prefix ./${frontDir} run build`);
     core.info("Site Builded");
+    execSync(
+      `curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"`
+    );
+    execSync(`unzip awscliv2.zip`);
+    execSync(`sudo ./aws/install`);
     const buildDir = core.getInput("BuildDir");
     const S3BucketName = core.getInput("S3BucketName");
     const useDelete = core.getInput("useDelete");
