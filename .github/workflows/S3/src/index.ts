@@ -12,9 +12,7 @@ import { spawnSync, execSync } from "child_process";
     const S3BucketName = core.getInput("S3BucketName");
     const useDelete = core.getInput("useDelete");
     const deleteString = useDelete ? "--delete" : "";
-    spawnSync(
-      `cd ./${buildDir} & aws s3 sync . s3://${S3BucketName} ${deleteString}`
-    );
+    spawnSync(`aws s3 sync ./${buildDir} s3://${S3BucketName} ${deleteString}`);
     core.info("Build Folder Uploaded to S3 Bucket");
   } catch (error) {
     core.setFailed(error as string);
