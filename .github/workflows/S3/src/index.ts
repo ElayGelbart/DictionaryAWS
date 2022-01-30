@@ -20,12 +20,11 @@ import { spawnSync, execSync } from "child_process";
 
     console.log(
       "awsSYNC  ",
-      `aws s3 sync ./${buildDir} s3://${S3BucketName} ${deleteString}`
+      `aws s3 cp ./${buildDir} s3://${S3BucketName} ${deleteString}`
     );
-    const result = spawnSync(
-      `aws s3 sync . s3://${S3BucketName} ${deleteString}`,
-      { cwd: `./${buildDir}` }
-    );
+    const result = spawnSync(`aws s3 cp . s3://${S3BucketName} --recursive`, {
+      cwd: `./${buildDir}`,
+    });
     console.log(result);
     core.info("Build Folder Uploaded to S3 Bucket");
   } catch (error) {
