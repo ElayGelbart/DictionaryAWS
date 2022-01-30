@@ -12,9 +12,6 @@ env:
 jobs:
   Deploy_Front:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: serverless
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
