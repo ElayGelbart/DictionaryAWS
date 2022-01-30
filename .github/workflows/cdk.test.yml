@@ -13,10 +13,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
-      - name: install dependencies back
-        run: |
-          cd ./back
-          npm i
       - name: install dependencies serverless
         run: npm i
       - name: run test
